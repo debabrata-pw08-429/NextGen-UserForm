@@ -5,6 +5,7 @@ import {
   IoMdLock,
   FaMobileAlt,
   PiPersonArmsSpreadFill,
+  PiBagSimpleFill,
 } from "./IconProps";
 
 export const formFields = [
@@ -13,9 +14,10 @@ export const formFields = [
     name: "name",
     type: "text",
     placeholder: "Name",
-    errorMessage: "",
+    errorMessage:
+      "* Username should be 3-16 characters and shouldn't include any special character!",
     label: <BiSolidUser />,
-    pattern: "",
+    pattern: "^[A-Za-z0-9]{3,16}$",
     required: true,
   },
   {
@@ -23,9 +25,9 @@ export const formFields = [
     name: "email",
     type: "email",
     placeholder: "Email",
-    errorMessage: "",
+    errorMessage: "* It should be a valid gmail address!",
     label: <MdEmail />,
-    pattern: "",
+    pattern: "/^[w.-]+@gmail.com$/i",
     required: true,
   },
   {
@@ -33,9 +35,11 @@ export const formFields = [
     name: "password",
     type: "password",
     placeholder: "Password",
-    errorMessage: "",
+    errorMessage:
+      "* Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
     label: <IoMdLock />,
-    pattern: "",
+    pattern:
+      "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
     required: true,
   },
   {
@@ -43,7 +47,7 @@ export const formFields = [
     name: "mobileNumber",
     type: "tel",
     placeholder: "Mobile Number",
-    errorMessage: "",
+    errorMessage: "* Required",
     label: <FaMobileAlt />,
     pattern: "",
     required: true,
@@ -53,9 +57,9 @@ export const formFields = [
     name: "age",
     type: "number",
     placeholder: "Age",
-    errorMessage: "",
+    errorMessage: "* Age Should be in between 1 to 100",
     label: <PiPersonArmsSpreadFill />,
-    pattern: "",
+    pattern: "^(?:[1-9][0-9]?|100)$",
     required: true,
   },
   {
@@ -74,7 +78,7 @@ export const formFields = [
     type: "text",
     placeholder: "Occupation",
     errorMessage: "",
-    label: <BiSolidUser />,
+    label: <PiBagSimpleFill />,
     pattern: "",
     required: true,
   },

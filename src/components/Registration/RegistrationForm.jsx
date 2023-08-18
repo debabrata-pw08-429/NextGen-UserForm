@@ -11,8 +11,84 @@ import {
   PiBagSimpleFill,
 } from "./IconProps";
 
+const formFields = [
+  {
+    id: 1,
+    name: "name",
+    type: "text",
+    placeholder: "Name",
+    errorMessage:
+      "* Username should be 3-16 characters and shouldn't include any special character!",
+    label: <BiSolidUser />,
+    pattern: "^[A-Za-z0-9]{3,16}$",
+    required: true,
+  },
+  {
+    id: 2,
+    name: "email",
+    type: "email",
+    placeholder: "Email",
+    errorMessage: "* It should be a valid gmail address!",
+    label: <MdEmail />,
+    pattern:
+      "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$",
+    required: true,
+  },
+  {
+    id: 3,
+    name: "password",
+    type: "password",
+    placeholder: "Password",
+    errorMessage:
+      "* Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+    label: <IoMdLock />,
+    pattern:
+      "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$",
+    required: true,
+  },
+  {
+    id: 4,
+    name: "mobileNumber",
+    type: "text",
+    placeholder: "Mobile Number",
+    errorMessage: "* Required",
+    label: <FaMobileAlt />,
+    pattern: "",
+    // required: true,
+  },
+  {
+    id: 5,
+    name: "age",
+    type: "number",
+    placeholder: "Age",
+    errorMessage: "* Age Should be in between 1 to 100",
+    label: <PiPersonArmsSpreadFill />,
+    pattern: "^(?:[1-9][0-9]?|100)$",
+    required: true,
+  },
+  {
+    id: 6,
+    name: "address",
+    type: "text",
+    placeholder: "Address",
+    errorMessage: "",
+    label: <MdLocationPin />,
+    pattern: "",
+    required: true,
+  },
+  {
+    id: 7,
+    name: "occupation",
+    type: "text",
+    placeholder: "Occupation",
+    errorMessage: "",
+    label: <PiBagSimpleFill />,
+    pattern: "",
+    required: true,
+  },
+];
+
 const RegistrationForm = () => {
-  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,50 +108,20 @@ const RegistrationForm = () => {
     }));
   };
 
-  function isValidGmailAddress(email) {
-    const gmailRegex = /^[\w.-]+@gmail\.com$/i; // Case-insensitive match
-    return gmailRegex.test(email);
-  }
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.name) {
-      newErrors.name = "Name is required";
-    }
-
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!isValidGmailAddress(formData.email)) {
-      newErrors.email = "Invalid Gmail format";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  // Implement validation logic and registration submission here
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (validateForm()) {
-      localStorage.setItem("registrationFormData", JSON.stringify(formData));
-
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        mobileNumber: "",
-        age: "",
-        address: "",
-        gender: "",
-        occupation: "",
-      });
-
-      alert("Registration successful!");
-    } else {
-      alert(errors);
-    }
+    localStorage.setItem("registrationFormData", JSON.stringify(formData));
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      mobileNumber: "",
+      age: "",
+      address: "",
+      gender: "",
+      occupation: "",
+    });
+    alert("Registration successful!");
   };
 
   return (
@@ -83,91 +129,42 @@ const RegistrationForm = () => {
       <div className="registration-form">
         <h1>Registration</h1>
         <form onSubmit={handleSubmit}>
-          <div className="form_group">
-            <label htmlFor="name">
-              <BiSolidUser />
-            </label>
+          {formFields.map((field) => {
+            let isValid = true;
+            if (formData[field.name].length > 0 && field.pattern !== "") {
+              const validRegex = new RegExp(field.pattern);
+              isValid = validRegex.test(formData[field.name]);
+            }
 
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="form_group">
-            <label htmlFor="email">
-              <MdEmail />
-            </label>
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="form_group">
-            <label htmlFor="password">
-              <IoMdLock />
-            </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="form_group">
-            <label htmlFor="email">
-              <FaMobileAlt />
-            </label>
-            <input
-              type="tel"
-              name="mobileNumber"
-              placeholder="Mobile Number"
-              value={formData.mobileNumber}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="form_group">
-            <label htmlFor="email">
-              <PiPersonArmsSpreadFill />
-            </label>
-            <input
-              type="number"
-              name="age"
-              placeholder="Age"
-              value={formData.age}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="form_group">
-            <label htmlFor="email">
-              <MdLocationPin />
-            </label>
-            <input
-              type="text"
-              name="address"
-              placeholder="Address"
-              value={formData.address}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+            return (
+              <div className="form_group" key={field.id}>
+                <label
+                  htmlFor={field.name}
+                  style={{
+                    top: isValid ? "45%" : "25%",
+                  }}
+                >
+                  {field.label}
+                </label>
+                <input
+                  type={field.type}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  value={formData[field.name]}
+                  onChange={handleInputChange}
+                  required={field.required}
+                  pattern={field.pattern !== "" ? field.pattern : null}
+                  aria-invalid={isValid}
+                  aria-errormessage={field.id}
+                />
+                {isValid ? null : (
+                  <div id={field.id} className="error">
+                    {field.errorMessage}
+                  </div>
+                )}
+              </div>
+            );
+          })}
 
           <div className="form_group">
             <label htmlFor="email">
@@ -184,21 +181,6 @@ const RegistrationForm = () => {
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
-            {errors.gender && <div className="error">{errors.gender}</div>}
-          </div>
-
-          <div className="form_group">
-            <label htmlFor="occupation">
-              <PiBagSimpleFill />
-            </label>
-            <input
-              type="text"
-              name="occupation"
-              placeholder="Occupation"
-              value={formData.occupation}
-              onChange={handleInputChange}
-              required
-            />
           </div>
 
           <div className="Check_register_form">

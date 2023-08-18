@@ -1,19 +1,19 @@
-import { useState } from "react";
+// import { useState } from "react";
 import RegistrationForm from "./components/Registration/RegistrationForm";
 // import LoginForm from "./components/Login/LoginPage";
 // import UserDetails from "./components/UserDetails/UserDetails";
 import "./App.css";
 
 const App = () => {
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  // const [loggedInUser, setLoggedInUser] = useState(null);
 
-  const handleLogin = (user) => {
-    setLoggedInUser(user);
-  };
+  // const handleLogin = (user) => {
+  //   setLoggedInUser(user);
+  // };
 
-  const handleLogout = () => {
-    setLoggedInUser(null);
-  };
+  // const handleLogout = () => {
+  //   setLoggedInUser(null);
+  // };
 
   return (
     <div className="app">

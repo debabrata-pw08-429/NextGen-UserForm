@@ -97,9 +97,16 @@ label {
   padding-bottom: 5px;
 }
 
-span {
+.error {
   font-size: 12px;
   padding: 3px;
   color: red;
-  display: none;
+}
+
+input[aria-invalid="true"]:focus {
+  border-bottom: 1px solid red;
+}
+
+input[aria-invalid="true"]:focus ~ .error {
+  display: block;
 }
