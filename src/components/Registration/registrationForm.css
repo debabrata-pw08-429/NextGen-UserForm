@@ -1,0 +1,105 @@
+.registerPage {
+  width: 60%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 64px;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.registration-form {
+  width: 45%;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.registration-form h1 {
+  margin-bottom: 35px;
+}
+
+.registration-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.registration-form input {
+  display: block;
+  outline: none;
+}
+
+.registration-form input,
+.registration-form select {
+  width: 100%;
+  padding: 6px 30px;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #999;
+  box-sizing: border-box;
+}
+
+.registration-form select {
+  appearance: none;
+  background: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>")
+    no-repeat right 10px center;
+  background-size: 20px 20px;
+  padding-right: 35px;
+}
+.registration-form select:focus {
+  outline: none;
+}
+
+.registration-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.registration-form button:hover {
+  background-color: #0056b3;
+}
+
+.form_group {
+  position: relative;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.Check_register_form {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-size: smaller;
+}
+
+.Check_register_form > div > input {
+  margin: 0px;
+}
+
+label {
+  position: absolute;
+  left: 0;
+  top: 45%;
+  transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  color: #222;
+  padding-bottom: 5px;
+}
+
+span {
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
+}
