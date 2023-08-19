@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./LoginForm.css";
+import "./loginForm.css";
 import { MdEmail, IoMdLock, FaMobileAlt } from "../Registration/IconProps";
 
 const LoginForm = ({ onLogin }) => {
