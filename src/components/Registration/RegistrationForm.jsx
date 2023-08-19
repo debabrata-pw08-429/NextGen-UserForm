@@ -1,4 +1,4 @@
-import "./registrationform.css";
+import "./registrationForm.css";
 import { useState } from "react";
 import {
   BiSolidUser,
