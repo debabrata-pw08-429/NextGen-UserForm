@@ -1,10 +1,18 @@
+.login_form_box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
 .login-form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  max-width: 500px;
+  padding: 24px;
+  border-radius: 16px;
   background-color: #fff;
+  padding-bottom: 50px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 
 .login-form h2 {
@@ -21,7 +29,6 @@
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
 }
 
 .login-form button {
@@ -36,4 +43,74 @@
 
 .login-form button:hover {
   background-color: #0056b3;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+.login-form input {
+  display: block;
+  outline: none;
+}
+
+.login-form input,
+.login-form select {
+  width: 100%;
+  padding: 6px 30px;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #999;
+  box-sizing: border-box;
+}
+
+.login-form select {
+  appearance: none;
+  background: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>")
+    no-repeat right 10px center;
+  background-size: 20px 20px;
+  padding-right: 35px;
+}
+
+.login-form select:focus {
+  outline: none;
+}
+
+.login-form .or_line {
+  margin: 30px 0px;
+  color: ghostwhite;
+}
+
+.login-form .or_line ~ span {
+  width: 15%;
+  margin: -40px auto;
+  display: flex;
+  justify-content: center;
+  color: grey;
+  background-color: white;
+  border-radius: 50px;
+  font-size: smaller;
+}
+
+.login-form .Alternate_Login {
+  width: 100%;
+  margin-top: 60px;
+  padding: 8px 16px;
+  border: 1px solid blue;
+  background-color: white;
+  color: blue;
+}
+
+.login-form .Alternate_Login:hover {
+  margin-top: 60px;
+  padding: 8px 16px;
+  background-color: #0064cf;
+  color: white;
+}
+
+.login-form .Alternate_Login ~ p {
+  font-size: smaller;
+  color: gray;
+  margin-top: 10px;
+  padding: 8px 16px;
 }

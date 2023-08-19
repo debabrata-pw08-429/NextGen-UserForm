@@ -1,6 +1,9 @@
 import "./userDetails.css";
 
 const UserDetails = ({ user, onLogout }) => {
+  // Retrieve registration details from local storage
+  const storedData = JSON.parse(localStorage.getItem("registrationFormData"));
+  user = storedData;
   return (
     <div className="user-details">
       <h2>User Details</h2>
@@ -11,7 +14,7 @@ const UserDetails = ({ user, onLogout }) => {
       <p>Address: {user.address}</p>
       <p>Gender: {user.gender}</p>
       <p>Occupation: {user.occupation}</p>
-      <button onClick={onLogout}>Logout</button>
+      <button onClick={() => (window.location = "/")}>Logout</button>
     </div>
   );
 };

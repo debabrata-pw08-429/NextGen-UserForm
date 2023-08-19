@@ -54,7 +54,7 @@ const formFields = [
     errorMessage: "* Required",
     label: <FaMobileAlt />,
     pattern: "",
-    // required: true,
+    required: true,
   },
   {
     id: 5,
@@ -122,6 +122,7 @@ const RegistrationForm = () => {
       occupation: "",
     });
     alert("Registration successful!");
+    window.location = "/";
   };
 
   return (

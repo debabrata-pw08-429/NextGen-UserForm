@@ -1,0 +1,40 @@
+.nav {
+  width: 98%;
+  margin: 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: whitesmoke;
+  background-color: transparent;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  margin-bottom: 50px;
+}
+
+.nav > div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.nav .logo-nav {
+  width: 50px;
+  height: 50px;
+  color: #b175ff;
+}
+
+.nav_sub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  color: whitesmoke;
+  padding: 0.5rem;
+}
+
+.nav_sub .nav-img {
+  width: 30px;
+  height: 30px;
+}

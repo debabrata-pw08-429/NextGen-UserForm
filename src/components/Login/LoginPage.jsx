@@ -1,70 +1,112 @@
 import { useState } from "react";
-import "./LoginForm.css"; // Import CSS file for styling
+import "./LoginForm.css";
+import { MdEmail, IoMdLock, FaMobileAlt } from "../Registration/IconProps";
 
 const LoginForm = ({ onLogin }) => {
+  const [alterLogin, setAlterLogin] = useState(false);
   const [formData, setFormData] = useState({
-    identifier: "",
+    email: "",
+    mobileNumber: "",
     password: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  // Implement login logic here and call onLogin with user data if successful
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Retrieve registration details from local storage
-    const storedRegistrationData = JSON.parse(
-      localStorage.getItem("registrationFormData")
-    );
+    const storedData = JSON.parse(localStorage.getItem("registrationFormData"));
 
-    if (storedRegistrationData) {
-      // Check if the entered identifier and password match the stored data
-      if (
-        (formData.identifier === storedRegistrationData.email ||
-          formData.identifier === storedRegistrationData.mobileNumber) &&
-        formData.password === storedRegistrationData.password
-      ) {
-        // Call the onLogin function with user data if successful
-        onLogin(storedRegistrationData);
-      } else {
-        alert(
-          "Invalid credentials. Please check your email/mobile number and password."
-        );
-      }
+    if (
+      (storedData.email === formData.email &&
+        storedData.password === formData.password) ||
+      storedData.mobileNumber === formData.mobileNumber
+    ) {
+      onLogin(storedData);
+      window.location = "/userPage";
     } else {
-      alert("No registration data found. Please register first.");
+      alert("Invalid Credentials!!!");
     }
   };
 
   return (
-    <div className="login-form">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="identifier"
-          placeholder="Email/Mobile Number"
-          value={formData.identifier}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleInputChange}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="login_form_box">
+      <div className="login-form">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          {alterLogin ? (
+            <>
+              <div className="form_group">
+                <label htmlFor="text">
+                  <FaMobileAlt />
+                </label>
+                <input
+                  type="text"
+                  name="mobileNumber"
+                  placeholder="Mobile Number"
+                  value={formData.mobileNumber}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="form_group">
+                <label htmlFor="email">
+                  <MdEmail />
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+
+              <div className="form_group">
+                <label htmlFor="password">
+                  <IoMdLock />
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </>
+          )}
+
+          <button type="submit">Login</button>
+        </form>
+        <div>
+          <hr className="or_line" />
+          <span>OR</span>
+        </div>
+        <button
+          className="Alternate_Login"
+          onClick={() => setAlterLogin(!alterLogin)}
+        >
+          {alterLogin ? "Login with Email" : "Login with mobile number"}
+        </button>
+
+        <p>
+          {"Don't have an account?"} <a href="">Register Now</a>
+        </p>
+      </div>
     </div>
   );
 };
