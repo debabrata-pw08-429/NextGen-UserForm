@@ -52,7 +52,11 @@ const LoginForm = ({ onLogin }) => {
   return (
     <div className="login_form_box">
       <div className="login-form">
-        <h2>Login</h2>
+        <div className="login_title">
+          <h2>Welcome back</h2>
+          <p>Please enter your login information.</p>
+        </div>
+
         <form onSubmit={handleSubmit}>
           {/* Conditionally render email or mobile number fields */}
           {alterLogin ? (
