@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import PropTypes from "prop-types"; // Import PropTypes for props validation
 import "./loginForm.css";
 import { MdEmail, IoMdLock, FaMobileAlt } from "../Registration/IconProps";
@@ -38,9 +39,9 @@ const LoginForm = ({ onLogin }) => {
           storedData.password === formData.password) ||
         storedData.mobileNumber === formData.mobileNumber
       ) {
-        onLogin(storedData);
-        window.location = "/userPage";
         localStorage.setItem("logIn", true);
+        onLogin(storedData);
+        window.location.pathname = "/userPage";
       } else {
         alert("Invalid Credentials!!!");
       }
@@ -119,7 +120,13 @@ const LoginForm = ({ onLogin }) => {
         </button>
 
         <p>
-          {"Don't have an account?"} <a href="/registration">Register Now</a>
+          {"Don't have an account?"}{" "}
+          <span
+            onClick={() => (window.location.pathname = "/registration")}
+            className="login_register_redirect"
+          >
+            Register Now
+          </span>
         </p>
       </div>
     </div>

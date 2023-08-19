@@ -134,6 +134,11 @@
   padding: 8px 16px;
 }
 
+.login_register_redirect {
+  color: #0064cf;
+  cursor: pointer;
+}
+
 /* Media query for tablets */
 @media (max-width: 768px) {
   .login_form_box {

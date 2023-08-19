@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import "./userDetails.css";
 
+
 /**
  * Component to display user details and handle logout functionality.
  *
@@ -25,7 +26,7 @@ const UserDetails = ({ user }) => {
             <button
               onClick={() => {
                 localStorage.setItem("logIn", false);
-                window.location = "/";
+                window.location.pathname = "/";
               }}
             >
               Go To Login
@@ -44,7 +45,7 @@ const UserDetails = ({ user }) => {
             <button
               onClick={() => {
                 localStorage.setItem("logIn", false);
-                window.location = "/";
+                window.location.pathname = "/";
               }}
             >
               Logout
