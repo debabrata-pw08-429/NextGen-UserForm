@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import "./userDetails.css";
 
-
 /**
  * Component to display user details and handle logout functionality.
  *
