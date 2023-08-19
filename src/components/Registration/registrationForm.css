@@ -6,6 +6,7 @@
   align-items: center;
   gap: 16px;
   padding: 64px;
+  margin-bottom: 250px;
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
@@ -109,4 +110,18 @@ input[aria-invalid="true"]:focus {
 
 input[aria-invalid="true"]:focus ~ .error {
   display: block;
+}
+
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .register_img {
+    display: none;
+  }
+
+  .registration-form {
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
 }

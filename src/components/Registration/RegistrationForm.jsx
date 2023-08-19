@@ -195,7 +195,7 @@ const RegistrationForm = () => {
           <button type="submit">Register</button>
         </form>
       </div>
-      <div>
+      <div className="register_img">
         <img
           src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signup-image.jpg"
           alt=""

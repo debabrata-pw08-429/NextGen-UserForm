@@ -1,15 +1,20 @@
 import { useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes for props validation
 import "./loginForm.css";
 import { MdEmail, IoMdLock, FaMobileAlt } from "../Registration/IconProps";
 
 const LoginForm = ({ onLogin }) => {
+  // State for toggling between email and mobile number login
   const [alterLogin, setAlterLogin] = useState(false);
+
+  // State for form data
   const [formData, setFormData] = useState({
     email: "",
     mobileNumber: "",
     password: "",
   });
 
+  // Handle input changes in the form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -19,21 +24,28 @@ const LoginForm = ({ onLogin }) => {
     }));
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Retrieve registration details from local storage
-    const storedData = JSON.parse(localStorage.getItem("registrationFormData"));
+    const storedData =
+      JSON.parse(localStorage.getItem("registrationFormData")) || 0;
 
-    if (
-      (storedData.email === formData.email &&
-        storedData.password === formData.password) ||
-      storedData.mobileNumber === formData.mobileNumber
-    ) {
-      onLogin(storedData);
-      window.location = "/userPage";
+    if (storedData) {
+      if (
+        (storedData.email === formData.email &&
+          storedData.password === formData.password) ||
+        storedData.mobileNumber === formData.mobileNumber
+      ) {
+        onLogin(storedData);
+        window.location = "/userPage";
+        localStorage.setItem("logIn", true);
+      } else {
+        alert("Invalid Credentials!!!");
+      }
     } else {
-      alert("Invalid Credentials!!!");
+      alert("Please Register your details first!!!");
     }
   };
 
@@ -42,22 +54,21 @@ const LoginForm = ({ onLogin }) => {
       <div className="login-form">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
+          {/* Conditionally render email or mobile number fields */}
           {alterLogin ? (
-            <>
-              <div className="form_group">
-                <label htmlFor="text">
-                  <FaMobileAlt />
-                </label>
-                <input
-                  type="text"
-                  name="mobileNumber"
-                  placeholder="Mobile Number"
-                  value={formData.mobileNumber}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-            </>
+            <div className="form_group">
+              <label htmlFor="text">
+                <FaMobileAlt />
+              </label>
+              <input
+                type="text"
+                name="mobileNumber"
+                placeholder="Mobile Number"
+                value={formData.mobileNumber}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
           ) : (
             <>
               <div className="form_group">
@@ -104,11 +115,16 @@ const LoginForm = ({ onLogin }) => {
         </button>
 
         <p>
-          {"Don't have an account?"} <a href="">Register Now</a>
+          {"Don't have an account?"} <a href="/registration">Register Now</a>
         </p>
       </div>
     </div>
   );
+};
+
+// Props validation using PropTypes
+LoginForm.propTypes = {
+  onLogin: PropTypes.func.isRequired, // Function to call on login
 };
 
 export default LoginForm;
